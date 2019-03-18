@@ -1,0 +1,8 @@
+package com.example.registration.repository;
+
+import com.example.registration.model.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account,Long> {
+    Account findByUsername(String username);
+}
