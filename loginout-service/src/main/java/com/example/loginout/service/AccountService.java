@@ -29,15 +29,13 @@ public class AccountService {
             case "2":
                 type = AccountType.SELLER;
                 break;
-            case "3":
-                type = AccountType.ADMINISTRATOR;
-                break;
         }
         return type;
     }
 
-    public boolean validPassword(String username, String password){
+    public boolean validAccount(String username, String password, String accountType) {
         Account account = accountRepository.findByUsername(username);
-        return account.getPassword().equals(CipherText.getCipherText(password));
+        return (account.getPassword().equals(CipherText.getCipherText(password))
+                && account.getAccountType() == this.getAccountType(accountType));
     }
 }

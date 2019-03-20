@@ -1,5 +1,5 @@
 package com.example.registration.model;
 
-public enum  AccountType {
-    BUYER,SELLER,ADMINISTRATOR
+public enum AccountType {
+    BUYER, SELLER
 }

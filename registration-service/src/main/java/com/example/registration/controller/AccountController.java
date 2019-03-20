@@ -4,7 +4,6 @@ import com.example.registration.model.Account;
 import com.example.registration.service.AccountService;
 import com.example.registration.tools.CipherText;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +14,7 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/account")
-    public String postAccount(@RequestParam(name = "username") String username,
+    public String createAccount(@RequestParam(name = "username") String username,
                               @RequestParam(name = "password") String password,
                               @RequestParam(name = "type") String accountType) {
         System.out.println("注册服务——进入postAccount，参数打印");
@@ -30,7 +29,8 @@ public class AccountController {
                     .password(CipherText.getCipherText(password))
                     .accountType(accountService.getAccountType(accountType))
                     .build();
-            accountService.saveAccount(account);
+            Account simpleAccount = Account.builder().username(username).build();
+            accountService.saveAccount(simpleAccount,account);
             return "success";
         }
     }

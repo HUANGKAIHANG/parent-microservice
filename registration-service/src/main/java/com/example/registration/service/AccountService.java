@@ -21,8 +21,8 @@ public class AccountService {
         return account != null;
     }
 
-    public void saveAccount(Account account) {
-        accountRepository.save(account);
+    public void saveAccount(Account simpleAccount, Account account) {
+        accountRepository.save(simpleAccount);
         //使用消息队列
         accountChangePublisher.publish(account);
     }
@@ -37,9 +37,6 @@ public class AccountService {
                 break;
             case "2":
                 type = AccountType.SELLER;
-                break;
-            case "3":
-                type = AccountType.ADMINISTRATOR;
                 break;
         }
         return type;

@@ -18,21 +18,24 @@ import java.util.Date;
 @Builder
 public class Account implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //    @Id
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //    private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Id
+    //    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    //    @Column(nullable = false)
+    @Transient
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    //    @Enumerated(EnumType.STRING)
+    //    @Column(nullable = false)
+    @Transient
     private AccountType accountType;
 
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private Date createTime;
 
