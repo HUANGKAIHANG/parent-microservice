@@ -1,5 +1,5 @@
 server:
-  port: 10000
+  port: 10001
 
 eureka:
   client:
@@ -29,7 +29,8 @@ spring:
                 username: guest
                 password: guest
       bindings:
-        accountChangeOutput:
+        accountChangeInput:
           destination: accountChangeTopic
           content-type: application/json
+          group: accountGroup
           binder: rabbitmq

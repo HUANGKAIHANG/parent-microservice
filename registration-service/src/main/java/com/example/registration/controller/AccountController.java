@@ -17,14 +17,15 @@ public class AccountController {
     @PostMapping("/account")
     public String postAccount(@RequestParam(name = "username") String username,
                               @RequestParam(name = "password") String password,
-                              @RequestParam(name = "type") String accountType,
-                              Model model) {
-        System.out.println("进入postAccount，参数打印");
+                              @RequestParam(name = "type") String accountType) {
+        System.out.println("注册服务——进入postAccount，参数打印");
         System.out.println(username + "--" + password + "--" + accountType);
 
+        //若用户名存在，不允许注册
         if (accountService.usernameExists(username)) {
             return "fail";
         } else {
+            //用户名不存在，允许注册
             Account account = Account.builder().username(username)
                     .password(CipherText.getCipherText(password))
                     .accountType(accountService.getAccountType(accountType))
