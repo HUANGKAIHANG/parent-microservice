@@ -1,8 +1,11 @@
 package com.example.loginout.controller;
 
+import com.example.loginout.model.Account;
 import com.example.loginout.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "v1")
@@ -42,5 +45,11 @@ public class LoginoutController {
     public String logout() {
         System.out.println("登录登出服务——进入logout，参数打印");
         return "logout";
+    }
+
+    @GetMapping("/account")
+    public List<Account> getAllAccount(){
+        System.out.println("登录登出服务——进入getAllAccount，参数打印");
+        return accountService.getAllAccount();
     }
 }

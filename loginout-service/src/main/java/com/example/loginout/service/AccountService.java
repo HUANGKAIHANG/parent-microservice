@@ -7,6 +7,8 @@ import com.example.loginout.tools.CipherText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -37,5 +39,9 @@ public class AccountService {
         Account account = accountRepository.findByUsername(username);
         return (account.getPassword().equals(CipherText.getCipherText(password))
                 && account.getAccountType() == this.getAccountType(accountType));
+    }
+
+    public List<Account> getAllAccount(){
+        return accountRepository.findAll();
     }
 }
