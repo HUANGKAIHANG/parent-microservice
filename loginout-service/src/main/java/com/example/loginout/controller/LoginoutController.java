@@ -5,6 +5,8 @@ import com.example.loginout.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -17,10 +19,14 @@ public class LoginoutController {
     @PostMapping("v0/login")
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
-                        @RequestParam(name = "type") String accountType) {
+                        @RequestParam(name = "type") String accountType,
+                        HttpSession httpSession,
+                        HttpServletRequest request) {
 
         System.out.println("登录登出服务——进入login，参数打印");
         System.out.println(username + "--" + password + "--" + accountType);
+        System.out.println("session="+httpSession.getId());
+        System.out.println("request-session="+request.getSession().getId());
 
         //检查用户名是否存在
         if (accountService.usernameExists(username)) {

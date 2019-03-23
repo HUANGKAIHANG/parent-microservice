@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,13 +24,16 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping("/commodity")
-    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity) {
+    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity,
+                                  HttpSession httpSession, HttpServletRequest request) {
 
         System.out.println("商品服务——进入createCommodity，参数打印");
         System.out.println(commodity.getName() + "--" + commodity.getAuthor()
                 + "--" + commodity.getPrice() + "--" + commodity.getCategory()
                 + "--" + commodity.getPublisher() + "--" + commodity.getISBN()
                 + "--" + commodity.getLanguage());
+        System.out.println("session="+httpSession.getId());
+        System.out.println("request-session="+request.getSession().getId());
 
         String filename = FileUpload.writeUploadFile(image, "advert");
         if ("NOT_IMAGE".equals(filename))
@@ -42,15 +47,24 @@ public class CommodityController {
     }
 
     @GetMapping("/commodity/{commodityId}")
-    public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id) {
+    public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id,
+                                       HttpSession httpSession, HttpServletRequest request) {
         System.out.println("商品服务——进入researchCommodity，参数打印");
         System.out.println(id);
+
+        System.out.println("session="+httpSession.getId());
+        System.out.println("request-session="+request.getSession().getId());
+
         return commodityService.getCommodity(id);
     }
 
     @GetMapping("/commodity")
-    public List<Commodity> getAllCommodity() {
+    public List<Commodity> getAllCommodity(HttpSession httpSession, HttpServletRequest request) {
         System.out.println("商品服务——进入getAllCommodity，参数打印");
+
+        System.out.println("session="+httpSession.getId());
+        System.out.println("request-session="+request.getSession().getId());
+
         return commodityService.getAllCommodity();
     }
 
