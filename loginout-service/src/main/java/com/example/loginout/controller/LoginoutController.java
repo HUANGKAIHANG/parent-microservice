@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "v1")
+//@RequestMapping(value = "v1")
 public class LoginoutController {
 
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/login")
+    @PostMapping("v0/login")
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
                         @RequestParam(name = "type") String accountType) {
@@ -41,13 +41,13 @@ public class LoginoutController {
         return "username does not exist";
     }
 
-    @GetMapping("/logout")
+    @GetMapping("v0/logout")
     public String logout() {
         System.out.println("登录登出服务——进入logout，参数打印");
         return "logout";
     }
 
-    @GetMapping("/account")
+    @GetMapping("v1/account")
     public List<Account> getAllAccount(){
         System.out.println("登录登出服务——进入getAllAccount，参数打印");
         return accountService.getAllAccount();
