@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,17 +24,15 @@ public class CommodityController {
     @Autowired
     private CommodityService commodityService;
 
-    @PostMapping("/commodity")
-    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity,
-                                  HttpSession httpSession, HttpServletRequest request) {
+    @PostMapping("/{accountId}/commodity")
+    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity
+            , @PathVariable(name = "accountId") Long accountId) {
 
         System.out.println("商品服务——进入createCommodity，参数打印");
         System.out.println(commodity.getName() + "--" + commodity.getAuthor()
                 + "--" + commodity.getPrice() + "--" + commodity.getCategory()
                 + "--" + commodity.getPublisher() + "--" + commodity.getISBN()
-                + "--" + commodity.getLanguage());
-        System.out.println("session="+httpSession.getId());
-        System.out.println("request-session="+request.getSession().getId());
+                + "--" + commodity.getLanguage() + "--" + accountId);
 
         String filename = FileUpload.writeUploadFile(image, "advert");
         if ("NOT_IMAGE".equals(filename))
@@ -41,7 +40,7 @@ public class CommodityController {
         String imagePath = UPLOADED_FOLDER + filename;
         commodity.setVisible(1);
         commodity.setImagePath(imagePath);
-        commodityService.createCommodity(commodity, 1L); //暂时写死，需要解决共享sesion问题
+        commodityService.createCommodity(commodity, accountId);
         return "success";
 
     }
@@ -96,6 +95,13 @@ public class CommodityController {
         commodity.setVisible(0);
         commodityService.updateCommodity(commodity);
         return "success";
+    }
+
+    @GetMapping("commodity/{commodityId}/price")
+    public BigDecimal getCommodityPrice(@PathVariable(name = "commodityId") Long id) {
+        System.out.println("商品服务——进入getCommodityPrice，参数打印");
+        System.out.println(id);
+        return commodityService.getPriceById(id);
     }
 
     @GetMapping("commodity/category")

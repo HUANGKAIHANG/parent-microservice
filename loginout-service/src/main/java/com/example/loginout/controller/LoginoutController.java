@@ -20,12 +20,11 @@ public class LoginoutController {
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
                         @RequestParam(name = "type") String accountType,
-                        HttpSession httpSession,
                         HttpServletRequest request) {
 
         System.out.println("登录登出服务——进入login，参数打印");
         System.out.println(username + "--" + password + "--" + accountType);
-        System.out.println("session="+httpSession.getId());
+
         System.out.println("request-session="+request.getSession().getId());
 
         //检查用户名是否存在
@@ -34,8 +33,12 @@ public class LoginoutController {
             if (accountService.validAccount(username, password, accountType)) {
                 //密码和身份正确
                 if ("1".equals(accountType)) {
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("identity", "1");
                     return "buyer";
                 } else if ("2".equals(accountType)) {
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("identity", "2");
                     return "seller";
                 }
             } else {

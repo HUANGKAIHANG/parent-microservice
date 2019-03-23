@@ -7,6 +7,7 @@ import com.example.commodity.repository.SellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +51,9 @@ public class CommodityService {
 
     public List<Commodity> getMyCommodity(List<Long> id) {
         return commodityRepository.findAllByVisibleAndIdIn(1, id);
+    }
+
+    public BigDecimal getPriceById(Long id) {
+        return commodityRepository.findOne(id).getPrice();
     }
 }

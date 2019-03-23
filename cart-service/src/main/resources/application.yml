@@ -1,0 +1,16 @@
+server:
+  port: 11001
+
+eureka:
+  client:
+    # 将自身注册到eureka
+    register-with-eureka: true
+    # 拉取并缓存其他服务到本地
+    fetch-registry: true
+    # eureka地址
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    # 向Eureka注册时，是否使用IP地址+端口号作为服务实例的唯一标识
+    prefer-ip-address: true
