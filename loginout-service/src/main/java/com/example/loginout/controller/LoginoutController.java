@@ -5,7 +5,6 @@ import com.example.loginout.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -20,12 +19,10 @@ public class LoginoutController {
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
                         @RequestParam(name = "type") String accountType,
-                        HttpServletRequest request) {
+                        HttpSession session) {
 
         System.out.println("登录登出服务——进入login，参数打印");
         System.out.println(username + "--" + password + "--" + accountType);
-
-        System.out.println("request-session="+request.getSession().getId());
 
         //检查用户名是否存在
         if (accountService.usernameExists(username)) {
@@ -33,13 +30,9 @@ public class LoginoutController {
             if (accountService.validAccount(username, password, accountType)) {
                 //密码和身份正确
                 if ("1".equals(accountType)) {
-                    request.getSession().setAttribute("username", username);
-                    request.getSession().setAttribute("identity", "1");
-                    return "buyer";
+                    return String.valueOf(accountService.getAccountId(username));
                 } else if ("2".equals(accountType)) {
-                    request.getSession().setAttribute("username", username);
-                    request.getSession().setAttribute("identity", "2");
-                    return "seller";
+                    return String.valueOf(accountService.getAccountId(username));
                 }
             } else {
                 //密码或身份不正确

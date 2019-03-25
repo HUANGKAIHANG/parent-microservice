@@ -20,6 +20,10 @@ public class AccountService {
         return account != null;
     }
 
+    public Long getAccountId(String username) {
+        return accountRepository.findByUsername(username).getId();
+    }
+
     public AccountType getAccountType(String accountType) {
 
         AccountType type = null;

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -46,23 +45,18 @@ public class CommodityController {
     }
 
     @GetMapping("/commodity/{commodityId}")
-    public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id,
-                                       HttpSession httpSession, HttpServletRequest request) {
+    public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id) {
         System.out.println("商品服务——进入researchCommodity，参数打印");
         System.out.println(id);
-
-        System.out.println("session="+httpSession.getId());
-        System.out.println("request-session="+request.getSession().getId());
 
         return commodityService.getCommodity(id);
     }
 
     @GetMapping("/commodity")
-    public List<Commodity> getAllCommodity(HttpSession httpSession, HttpServletRequest request) {
+    public List<Commodity> getAllCommodity(HttpSession httpSession) {
         System.out.println("商品服务——进入getAllCommodity，参数打印");
 
         System.out.println("session="+httpSession.getId());
-        System.out.println("request-session="+request.getSession().getId());
 
         return commodityService.getAllCommodity();
     }
