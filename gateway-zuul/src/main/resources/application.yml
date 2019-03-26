@@ -15,5 +15,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 7000
+          strategy: SEMAPHORE
 ribbon:
   ReadTimeout: 7000

@@ -1,4 +1,4 @@
-package com.example.gateway.config;
+package com.example.commodity.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -6,5 +6,4 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @Configuration
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 300)
 public class SessionConfig {
-
 }

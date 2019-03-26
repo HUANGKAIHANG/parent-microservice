@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -53,10 +54,12 @@ public class CommodityController {
     }
 
     @GetMapping("/commodity")
-    public List<Commodity> getAllCommodity(HttpSession httpSession) {
+    public List<Commodity> getAllCommodity(HttpSession httpSession, HttpServletRequest request) {
         System.out.println("商品服务——进入getAllCommodity，参数打印");
 
-        System.out.println("session="+httpSession.getId());
+        System.out.println("commodity session=" + httpSession.getId());
+        System.out.println(request.getSession().getId());
+        System.out.println(httpSession.getAttribute(httpSession.getId()));
 
         return commodityService.getAllCommodity();
     }
@@ -110,5 +113,10 @@ public class CommodityController {
         System.out.println("商品服务——进入getLanguage，参数打印");
         Language[] languages = Language.values();
         return Arrays.asList(languages);
+    }
+
+    @GetMapping("sid")
+    public String getSid(HttpSession session) {
+        return session.getId();
     }
 }

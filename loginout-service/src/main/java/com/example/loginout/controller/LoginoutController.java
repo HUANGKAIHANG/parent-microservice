@@ -5,6 +5,7 @@ import com.example.loginout.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class LoginoutController {
     public String login(@RequestParam(name = "username") String username,
                         @RequestParam(name = "password") String password,
                         @RequestParam(name = "type") String accountType,
-                        HttpSession session) {
+                        HttpSession session, HttpServletRequest request) {
 
         System.out.println("登录登出服务——进入login，参数打印");
         System.out.println(username + "--" + password + "--" + accountType);
@@ -30,9 +31,17 @@ public class LoginoutController {
             if (accountService.validAccount(username, password, accountType)) {
                 //密码和身份正确
                 if ("1".equals(accountType)) {
-                    return String.valueOf(accountService.getAccountId(username));
+                    Long buyerId = accountService.getAccountId(username);
+                    System.out.println("login session1:" + session.getId());
+                    System.out.println(request.getSession().getId());
+                    session.setAttribute(session.getId(), buyerId);
+                    return String.valueOf(buyerId);
                 } else if ("2".equals(accountType)) {
-                    return String.valueOf(accountService.getAccountId(username));
+                    Long sellerId = accountService.getAccountId(username);
+                    System.out.println("login session2:" + session.getId());
+                    System.out.println(request.getSession().getId());
+                    session.setAttribute(session.getId(), sellerId);
+                    return String.valueOf(sellerId);
                 }
             } else {
                 //密码或身份不正确
@@ -44,8 +53,13 @@ public class LoginoutController {
     }
 
     @GetMapping("v0/logout")
-    public String logout() {
+    public String logout(HttpSession session, HttpServletRequest request) {
         System.out.println("登录登出服务——进入logout，参数打印");
+        System.out.println("logout session:" + session.getId());
+        System.out.println(request.getSession().getId());
+        System.out.println(session.getAttribute(session.getId()));
+        session.removeAttribute(session.getId());
+        session.invalidate();
         return "logout";
     }
 
@@ -53,5 +67,10 @@ public class LoginoutController {
     public List<Account> getAllAccount(){
         System.out.println("登录登出服务——进入getAllAccount，参数打印");
         return accountService.getAllAccount();
+    }
+
+    @GetMapping("sid")
+    public String getSid(HttpSession session) {
+        return session.getId();
     }
 }
