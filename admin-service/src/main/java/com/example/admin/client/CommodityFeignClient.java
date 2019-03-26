@@ -11,7 +11,7 @@ import java.util.List;
 public interface CommodityFeignClient {
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "v1/commodity",
+            value = "v0/commodity",
             consumes = "application/json")
     List<Commodity> getAllCommodity();
 }

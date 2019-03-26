@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "v1")
+//@RequestMapping(value = "v1")
 public class CommodityController {
 
     private static final String UPLOADED_FOLDER = "http://localhost:11000/advertIMG/advert/";
@@ -24,15 +24,17 @@ public class CommodityController {
     @Autowired
     private CommodityService commodityService;
 
-    @PostMapping("/{accountId}/commodity")
-    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity
-            , @PathVariable(name = "accountId") Long accountId) {
+    @PostMapping("v1/commodity")
+    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity,HttpSession session) {
 
         System.out.println("商品服务——进入createCommodity，参数打印");
         System.out.println(commodity.getName() + "--" + commodity.getAuthor()
                 + "--" + commodity.getPrice() + "--" + commodity.getCategory()
                 + "--" + commodity.getPublisher() + "--" + commodity.getISBN()
-                + "--" + commodity.getLanguage() + "--" + accountId);
+                + "--" + commodity.getLanguage());
+
+        Long accountId = (Long) session.getAttribute(session.getId());
+        System.out.println("accountId="+accountId);
 
         String filename = FileUpload.writeUploadFile(image, "advert");
         if ("NOT_IMAGE".equals(filename))
@@ -45,7 +47,7 @@ public class CommodityController {
 
     }
 
-    @GetMapping("/commodity/{commodityId}")
+    @GetMapping("v1/commodity/{commodityId}")
     public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id) {
         System.out.println("商品服务——进入researchCommodity，参数打印");
         System.out.println(id);
@@ -53,7 +55,7 @@ public class CommodityController {
         return commodityService.getCommodity(id);
     }
 
-    @GetMapping("/commodity")
+    @GetMapping("v0/commodity")
     public List<Commodity> getAllCommodity(HttpSession httpSession, HttpServletRequest request) {
         System.out.println("商品服务——进入getAllCommodity，参数打印");
 
@@ -64,15 +66,19 @@ public class CommodityController {
         return commodityService.getAllCommodity();
     }
 
-    @GetMapping("/{accountId}/commodity")
-    public List<Commodity> getMyCommodity(@PathVariable(name = "accountId") Long id) {
+    @GetMapping("v1/commodity")
+    public List<Commodity> getMyCommodity(HttpSession session) {
+
+        Long id = (Long) session.getAttribute(session.getId());
+
         System.out.println("商品服务——进入getMyCommodity，参数打印");
-        System.out.println(id);
+        System.out.println("accountId="+id);
+
         List<Long> commodityId = commodityService.getMyCommodityId(id);
         return commodityService.getMyCommodity(commodityId);
     }
 
-    @PutMapping("/commodity")
+    @PutMapping("v1/commodity")
     public String updateCommodity(Commodity commodity) {
         System.out.println("商品服务——进入updateCommodity，参数打印");
         System.out.println(commodity.getName() + "--" + commodity.getAuthor()
@@ -84,7 +90,7 @@ public class CommodityController {
         return "success";
     }
 
-    @PutMapping("commodity/{commodityId}")
+    @PutMapping("v1/commodity/{commodityId}")
     public String deleteCommodity(@PathVariable(name = "commodityId") Long id) {
         System.out.println("商品服务——进入deleteCommodity，参数打印");
         System.out.println(id);
@@ -94,28 +100,28 @@ public class CommodityController {
         return "success";
     }
 
-    @GetMapping("commodity/{commodityId}/price")
+    @GetMapping("v1/commodity/{commodityId}/price")
     public BigDecimal getCommodityPrice(@PathVariable(name = "commodityId") Long id) {
         System.out.println("商品服务——进入getCommodityPrice，参数打印");
         System.out.println(id);
         return commodityService.getPriceById(id);
     }
 
-    @GetMapping("commodity/category")
+    @GetMapping("v1/commodity/category")
     public List<Category> getCategory() {
         System.out.println("商品服务——进入getCategory，参数打印");
         Category[] categories = Category.values();
         return Arrays.asList(categories);
     }
 
-    @GetMapping("commodity/language")
+    @GetMapping("v1/commodity/language")
     public List<Language> getLanguage() {
         System.out.println("商品服务——进入getLanguage，参数打印");
         Language[] languages = Language.values();
         return Arrays.asList(languages);
     }
 
-    @GetMapping("sid")
+    @GetMapping("v1/sid")
     public String getSid(HttpSession session) {
         return session.getId();
     }

@@ -7,6 +7,7 @@ import com.example.cart.tools.NewUUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -18,11 +19,12 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping("/cart")
-    public String addACart(@RequestParam(name = "accountId") Long accountId,
-                           @RequestParam(name = "commodityId") Long commodityId) {
+    public String addACart(@RequestParam(name = "commodityId") Long commodityId, HttpSession session) {
+
+        Long accountId = (Long) session.getAttribute(session.getId());
 
         System.out.println("购物车服务——进入addACart，参数打印");
-        System.out.println(accountId + "--" + commodityId);
+        System.out.println("accountId="+accountId + "--" + commodityId);
 
         Cart cart = Cart.builder().accountId(accountId).commodityId(commodityId)
                 .quantity(1).status(Status.CART).build();
@@ -64,19 +66,24 @@ public class CartController {
         return "success";
     }
 
-    @GetMapping("/{accountId}/cart")
-    public List<Cart> getMyCart(@PathVariable(name = "accountId") Long accountId) {
+    @GetMapping("/cart")
+    public List<Cart> getMyCart(HttpSession session) {
+
+        Long accountId = (Long) session.getAttribute(session.getId());
+
         System.out.println("购物车服务——进入getMyCart，参数打印");
-        System.out.println(accountId);
+        System.out.println("accountId="+accountId);
 
         return cartService.getMyCart(accountId);
     }
 
-    @GetMapping("/{accountId}/cart/totalprice")
-    public BigDecimal getTotalPrice(@PathVariable(name = "accountId") Long accountId) {
+    @GetMapping("/cart/totalprice")
+    public BigDecimal getTotalPrice(HttpSession session) {
+
+        Long accountId = (Long) session.getAttribute(session.getId());
 
         System.out.println("购物车服务——进入getTotalPrice，参数打印");
-        System.out.println(accountId);
+        System.out.println("accountId="+accountId);
 
         return cartService.getTotalPrice(cartService.getMyCart(accountId));
     }

@@ -1,4 +1,4 @@
-package com.example.cart.config;
+package com.example.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.RedisFlushMode;
