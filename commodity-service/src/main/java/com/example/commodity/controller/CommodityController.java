@@ -47,7 +47,7 @@ public class CommodityController {
 
     }
 
-    @GetMapping("v1/commodity/{commodityId}")
+    @GetMapping("v0/commodity/{commodityId}")
     public Commodity researchCommodity(@PathVariable(name = "commodityId") Long id) {
         System.out.println("商品服务——进入researchCommodity，参数打印");
         System.out.println(id);

@@ -35,13 +35,13 @@ public class LoginoutController {
                     System.out.println("login session1:" + session.getId());
                     System.out.println(request.getSession().getId());
                     session.setAttribute(session.getId(), buyerId);
-                    return String.valueOf(buyerId);
+                    return "buyer";
                 } else if ("2".equals(accountType)) {
                     Long sellerId = accountService.getAccountId(username);
                     System.out.println("login session2:" + session.getId());
                     System.out.println(request.getSession().getId());
                     session.setAttribute(session.getId(), sellerId);
-                    return String.valueOf(sellerId);
+                    return "seller";
                 }
             } else {
                 //密码或身份不正确
@@ -69,8 +69,11 @@ public class LoginoutController {
         return accountService.getAllAccount();
     }
 
-    @GetMapping("sid")
-    public String getSid(HttpSession session) {
-        return session.getId();
+    @GetMapping("v0/validatelogin")
+    public int validateLogin(HttpSession session) {
+        if (session.getAttribute(session.getId())==null)
+            return 0;
+        else
+            return 1;
     }
 }
