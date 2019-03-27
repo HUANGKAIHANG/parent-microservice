@@ -70,10 +70,7 @@ public class LoginoutController {
     }
 
     @GetMapping("v0/validatelogin")
-    public int validateLogin(HttpSession session) {
-        if (session.getAttribute(session.getId())==null)
-            return 0;
-        else
-            return 1;
+    public String validateLogin(HttpSession session) {
+        return (String) session.getAttribute(session.getId());
     }
 }
