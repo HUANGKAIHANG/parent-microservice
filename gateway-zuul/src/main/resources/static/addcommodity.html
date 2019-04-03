@@ -2,9 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AddCommodity</title>
+    <title>Seller Page</title>
+    <script type="text/javascript" src="./js/addcommodity.js"></script>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <style>
+body {
+    background-image:url("./img/bjs1.jpg");
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+
+#add_frame {
+    width: 450px;
+    height: 420px;
+    padding: 50px;
+
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color: rgba(255, 222, 173,0.5);
+
+    border-radius: 10px;
+    text-align: left;
+}
+
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#image_logo {
+    margin-top: 22px;
+}
+
+.label_input {
+    font-size: 18px;
+    font-family: Trebuchet MS;
+
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: black;
+    background-color: #F8F8F8;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.text_field {
+    width: 340px;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+
+#btn_1 {
+    font-size: 18px;
+    font-family: Trebuchet MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 22px;
+    margin-left:22px
+
+    color: white;
+    background-color: #F8F8F8;
+    border-radius: 6px;
+    border: 0;
+
+    float: right;
+}
+#btn_2 {
+    font-size: 18px;
+    font-family: Trebuchet MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 22px;
+    margin-left:22px
+
+    color: white;
+    background-color: #F8F8F8;
+    border-radius: 6px;
+    border: 0;
+
+    float: left;
+}
+
+#forget_pwd {
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    top: 5px;
+
+}
+
+#forget_pwd:hover {
+    color: blue;
+    text-decoration: underline;a
+}
+
+#login_control {
+    padding: 0 28px;
+}
+
+
+
+    </style>
 </head>
 <body>
+<div id="add_frame">
+    <form>
+        <p enctype="multipart/form-data" id="file">
+        <p><label class="label_input">image</label><input type="file" id="image" name="username" class="text_field" required="required"/></p>
+        <p><label class="label_input">name</label><input type="text" id="name" class="text_field" required="required"/></p>
+        <p><label class="label_input">author</label><input type="text" id="author" name="username" class="text_field" required="required"/></p>
+        <p><label class="label_input">price</label><input type="text" id="price" class="text_field" required="required"/></p>
+        <p><label class="label_input">publisher</label><input type="text" id="publisher" name="username" class="text_field" required="required"/></p>
+        <p><label class="label_input">ISBN</label><input type="text" id="ISBN" class="text_field" required="required"/></p>
+        <p><label class="label_input">category</label><!--<input type="text" id="category" value="A" name="username" class="text_field" required="required"/>-->
+            <select id="category">
+                <option value="A" selected = "selected">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+            </select></p>
 
+        <p><label class="label_input">language</label><!--<input type="text" id="language" value="CHINESE" class="text_field" required="required"/>-->
+            <select id="language">
+                <option value="ENGLISH" selected = "selected">ENGLISH</option>
+                <option value="CHINESE">CHINESE</option>
+                <option value="JAPANESE">JAPANESE</option>
+                <option value="RUSSIAN">RUSSIAN</option>
+                <option value="FRENCH">FRENCH</option>
+                <option value="GERMAN">GERMAN</option>
+            </select></p>
+
+
+        <div>
+            <input id="btn_1" type="button" onclick="addCommodity()" value="submit"/>
+        </div>
+        <div>
+            <input id="btn_2" type="button" onclick="window.location.href='./seller.html'" value="back"/>
+
+        </div>
+    </form>
+</div>
 </body>
 </html>

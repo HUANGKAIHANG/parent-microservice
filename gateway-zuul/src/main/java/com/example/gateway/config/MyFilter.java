@@ -36,14 +36,25 @@ public class MyFilter extends ZuulFilter {
         if (requestURL.contains("v0"))
             System.out.println("这是v0请求，不需要拦截");
         else if (requestURL.contains("v1")) {
-            System.out.println("这是v1请求，需要拦截验证登录情况");
+            System.out.println("这是v1请求");
             HttpSession session = request.getSession();
             if (session.getAttribute(session.getId())==null){
-                System.out.println("检测到需要先登录的请求");
+                System.out.println("检测到未登录");
                 ctx.setSendZuulResponse(false);
                 ctx.setResponseStatusCode(400);
-                ctx.setResponseBody(JSON.toJSONString("please login first"));
-                ctx.set("msg",JSON.toJSONString("please login first"));
+                ctx.setResponseBody(JSON.toJSONString("please login first 101"));
+            }else {
+                if (requestURL.contains("adminservice")&&(!"administrator".equals(session.getAttribute("type")))){
+                    System.out.println("缺少管理员权限");
+                    ctx.setSendZuulResponse(false);
+                    ctx.setResponseStatusCode(400);
+                    ctx.setResponseBody(JSON.toJSONString("please login first 103"));
+                }else if (requestURL.contains("cartservice")&&(!"buyer".equals(session.getAttribute("type")))){
+                    System.out.println("只有买家才能有购物车操作");
+                    ctx.setSendZuulResponse(false);
+                    ctx.setResponseStatusCode(400);
+                    ctx.setResponseBody(JSON.toJSONString("please login first 105"));
+                }
             }
         }
         return null;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface CommodityFeignClient {
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/v1/commodity/{commodityId}",
+            value = "/v0/commodity/{commodityId}",
             consumes = "application/json")
     Commodity getCommodityById(@PathVariable("commodityId") Long commodityId);
 }

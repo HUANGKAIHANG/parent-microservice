@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AdminLogin</title>
+    <title>Admin login Page</title>
+
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/adminlogin.js"></script>
 </head>
+<style type="text/css">
+
+body {
+    background-image: url(img/book.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#login_frame {
+    width: 350px;
+    height: 260px;
+    padding: 30px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color: rgba(240, 255, 255, 0.5);
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#image_logo {
+    margin-top: 22px;
+}
+
+.label_input {
+    font-size: 16px;
+    font-family: Comic Sans MS;
+
+    width: 90px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: black;
+    background-color: #DDDDDD;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.text_field {
+    width: 278px;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+
+#btn_login {
+    font-size: 18px;
+    font-family: Comic Sans MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 22px;
+
+    color: black;
+    background-color: #DDDDDD;
+    border-radius: 6px;
+    border: 0;
+
+    float: right;
+}
+
+#forget_pwd {
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    top: 5px;
+
+}
+
+#forget_pwd:hover {
+    color: blue;
+    text-decoration: underline;a
+}
+
+#login_control {
+    padding: 0 28px;
+}
+</style>
 <body>
+<div id="login_frame">
+
+    <p id="image_logo"><img src="./img/logo.png"></p>
+
+
+    <form>
+        <p><label class="label_input">Username</label><input type="text" id="username" name="username" class="text_field" required="required"/></p>
+        <p><label class="label_input">Password</label><input type="password" id="password" class="text_field" required="required"/></p>
+        <div id="login_control">
+            <input id="btn_login" type="button" onclick="adminLogin()" value="Login"/>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

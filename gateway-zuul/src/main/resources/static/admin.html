@@ -2,9 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>Admin Page</title>
+    <style>
+body{
+background:url(img/orange.jpg);
+
+}
+#t1{
+display:block;
+margin:0 auto;
+width:50%;
+}
+#commodity{width:300px;
+    margin-top:300px;
+
+    color: black;
+
+    border-radius: 6px;
+    border: 0;
+    font-size: 50px;
+    float:left;}
+#account{width:300px;
+    margin-top:300px;
+
+    color: black;
+
+    border-radius: 6px;
+    border: 0;
+    font-size: 50px;
+    float:right;}
+
+    </style>
 </head>
-<body>
+<body >
+<div id="t1">
+<button id="commodity" onclick="window.location.href='./admincommodity.html'">commodity</button>
+<button id="account" onclick="window.location.href='./adminaccount.html'">account</button></div>
+<!--<script type="text/javascript">
+		var canvas=document.getElementById('mc');
+		var ctx=canvas.getContext('2d');
+ 	// 绘制背景
+         	 var gradient = ctx.createLinearGradient(0,0,0,300);
+
+
+          	gradient.addColorStop(0,"#e0e0e0");
+          	//gradient.addColorStop(1,"#ffffff");
+
+
+          	ctx.fillStyle = gradient;
+
+         	ctx.fillRect(0,0,canvas.width,canvas.height);
+	ctx.beginPath();
+
+		//坐标轴
+		ctx.moveTo(30,20);
+		ctx.lineWidth="1";
+		ctx.lineTo(30,380);
+		ctx.lineTo(400,380);
+		//ctx.closePath();
+		ctx.fillStyle="black";
+            		ctx.fillText("Week", 200, 390);
+		ctx.fillText("Sales", 10, 20);
+            		ctx.fillText(1,40,380);
+		ctx.fillText(2,100,380);
+		ctx.fillText(3,160,380);
+		ctx.fillText(4,220,380);
+		ctx.fillText(5,280,380);
+		ctx.fillText(6,340,380);
+		ctx.fillText(7,400,380);
+
+		//横线
+		ctx.strokeStyle="#999";
+		for(var i=0;i<7;i++)
+		{
+			ctx.moveTo(30,30+50*i);
+			ctx.lineTo(400,30+50*i);
+			ctx.fillStyle="black";
+			ctx.fillText(70-10*i,25,30+50*i);
+		}
+
+		//折线
+		ctx.moveTo(100,300);
+		ctx.lineTo(200,200);
+		ctx.lineTo(280,280);
+		ctx.lineTo(380,30);
+		ctx.stroke();
+
+	</script>-->
 
 </body>
 </html>

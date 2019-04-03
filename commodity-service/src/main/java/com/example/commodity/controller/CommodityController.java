@@ -25,7 +25,7 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping("v1/commodity")
-    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity,HttpSession session) {
+    public String createCommodity(@RequestParam("image") MultipartFile image, Commodity commodity, HttpSession session) {
 
         System.out.println("商品服务——进入createCommodity，参数打印");
         System.out.println(commodity.getName() + "--" + commodity.getAuthor()
@@ -34,7 +34,7 @@ public class CommodityController {
                 + "--" + commodity.getLanguage());
 
         Long accountId = (Long) session.getAttribute(session.getId());
-        System.out.println("accountId="+accountId);
+        System.out.println("accountId=" + accountId);
 
         String filename = FileUpload.writeUploadFile(image, "advert");
         if ("NOT_IMAGE".equals(filename))
@@ -72,7 +72,7 @@ public class CommodityController {
         Long id = (Long) session.getAttribute(session.getId());
 
         System.out.println("商品服务——进入getMyCommodity，参数打印");
-        System.out.println("accountId="+id);
+        System.out.println("accountId=" + id);
 
         List<Long> commodityId = commodityService.getMyCommodityId(id);
         return commodityService.getMyCommodity(commodityId);

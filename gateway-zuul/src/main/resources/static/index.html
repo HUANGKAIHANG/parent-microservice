@@ -2,15 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-<form action="./commodityservice/v1/commodity" method="get">
-    <input type="submit" value="commodity">
-</form>
+    <title>Index Page</title>
 
-<form action="./loginoutservice/v0/logout" method="get">
-    <input type="submit" value="logout">
-</form>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        ul{
+            list-style-type:none;
+            text-align:center;
+            font-size:14px;
+        }
+        li{
+            float:right;/*改动的地方*/
+            width:120px;
+            background-color:#C8C8C8;
+            text-align:center;
+            list-style:none;
+            margin-top:20px;
+        }
+        p{
+            font-family:Trebuchet MS;
+            text-align:center;
+            font-size:16px;
+        }
+        a:link,a:visited,a:hover,a:active{
+            color:#000;
+            text-decoration:none;
+        }
+        a{
+            display:block;/*整体变为可点击区域，而不只是字*/
+        }
+
+        #index{
+        width:100%;
+        height:80%;
+        float:center;
+        background:#F0F0F0;
+        border-radius: 10px;
+        padding:20px;
+        table-layout: fixed;
+        display:inline;
+        }
+
+        #pic{
+        width:800px;
+        height:500px;
+        padding:30px;
+        }
+
+        .info{
+        height:30%;
+        word-break: break-word;
+        }
+
+        #information{
+        background:#F0F0F0;
+        }
+        #pho{
+        width:800px;
+        height:500px;
+        }
+    </style>
+    <!-- Modernizer js -->
+    <script type="text/javascript" src="./js/jquery.js" ></script>
+    <script type="text/javascript" src="./js/index.js" ></script>
+
+</head>
+
+<body>
+<div id="nag" style="background:#C8C8C8;background-attachment:fixed">
+    <img id="logo" src="./img/logo.png"/>
+
+    <li><a id="registration" href="./registration.html">Registration</a></li>
+    <li><a id="login" href="./login.html">Login</a></li>
+    <li><a id="cart" href="./cart.html">ShoppingCart</a></li>
+    <li><p id="username"></p></li>
+
+</div>
+<div id="bg">
+    <img src="./img/1.jpg" style="width:100%"/>
+</div>
+<div id="information"></div>
+
+
 </body>
+
 </html>

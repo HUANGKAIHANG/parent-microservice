@@ -25,7 +25,8 @@ public class AdminAccountController {
         if (adminAccountService.validAdminAccount(username, password)) {
             System.out.println("admin login session:" + session.getId());
             System.out.println(request.getSession().getId());
-            session.setAttribute(session.getId(), "administrator");
+            session.setAttribute(session.getId(), "0");
+            session.setAttribute("type", "administrator");
             return "administrator";
         }
         return "wrong admin username or password";
@@ -37,7 +38,18 @@ public class AdminAccountController {
         System.out.println(request.getSession().getId());
         System.out.println(session.getAttribute(session.getId()));
         session.removeAttribute(session.getId());
+        session.removeAttribute("type");
         session.invalidate();
         return "adminlogout";
+    }
+
+    @GetMapping("v0/validatelogin")
+    public String validateLogin(HttpSession session) {
+        System.out.println("管理员登录登出服务——进入validate,参数打印");
+        System.out.println("validate session id" + session.getId());
+        if (session.getAttribute(session.getId()) == null) {
+            return "no";
+        }
+        return "admin";
     }
 }

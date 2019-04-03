@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Seller</title>
+    <title>Seller Page</title>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/seller.js"></script>
+    <style>
+
+        body {
+    background-image: url(img/bjs1.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+tr {
+    width: 278PX;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+
+td {
+    width: 278px;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+
+.btn_login {
+    font-size: 18px;
+    font-family: Comic Sans MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 22px;
+
+    color: white;
+    background-color: #DDDDDD;
+    border-radius: 6px;
+    border: 0;
+    float: left;
+}
+#username{
+    font-size: 24px;
+    font-family: Comic Sans MS;
+}
+
+#product{
+    width: 500px;
+    height: 420px;
+    padding: 30px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color: rgba(240, 255, 255, 0.5);
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+    </style>
 </head>
 <body>
+<button class="btn_login" onclick="window.location.href='./addcommodity.html'">add</button>
+<div id="name">
+    <p id="username"></p>
+</div>
+<div id="msg"></div>
+<div id="myCommodity"></div>
 
+
+<!--<table border="1">
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Delete</td>
+        <td>Edit</td>
+    </tr>
+    <thead>
+    <tbody id="tb">
+    <tr id="1st">
+        <td>商品名称0</td>
+        <td>
+            <input type="button" value="Del" onclick="del(this)"></td>
+        <td>
+            <input type="button" href="./editcommodity.html" value="edit" onclick="edit(this)"></td>
+    </tr>
+    </tbody>
+</table>-->
 </body>
 </html>
+
+
+
+<!--<script>
+    function add() {
+       window.location.href='./addcommodity.html';
+    }
+    function del(obj) {
+        var trId = obj.parentNode.parentNode.id;
+        var trObj = document.getElementById(trId);
+        document.getElementById("tb").removeChild(trObj);
+    }
+   function edit(obj) {
+    window.location.href='./editcommodity.html';
+    }
+</script>-->
+
+
+
+
+

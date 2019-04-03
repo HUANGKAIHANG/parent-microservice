@@ -45,7 +45,12 @@ public class AccountService {
                 && account.getAccountType() == this.getAccountType(accountType));
     }
 
-    public List<Account> getAllAccount(){
+    public List<Account> getAllAccount() {
         return accountRepository.findAll();
+    }
+
+    public String getUsername(Long id) {
+        Account account = accountRepository.findOne(id);
+        return account.getUsername();
     }
 }

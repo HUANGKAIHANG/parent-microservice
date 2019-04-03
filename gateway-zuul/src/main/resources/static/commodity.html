@@ -2,9 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Commodity</title>
+    <title>Commodity Page</title>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/commodity.js"></script>
+
+    <style>
+    body
+    {
+    background-image:url("./img/bjs3.jpg");
+    background-size:100%;
+    }
+
+    td{
+    width:50%;
+    border-radius: 10px;
+    text-align: center;
+    font-family:Trebuchet MS;
+    }
+
+    .basic-info{
+    width: 80%;
+    height: 260px;
+    padding: 30px;
+
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    bottom: 25%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color:rgba(248,248,248,0.5);
+    border-radius: 10px;
+    text-align: center;
+    table-layout:fixed;
+    }
+
+    h1{
+    width:80%;
+    font-family:Trebuchet MS;
+    color:#2F4F4F;
+    text-align: center;
+    padding:30px;
+    margin-left:10%;
+    }
+    <--rgba(240, 255, 255, 0.5) -->
+    .img{
+    width:500px;
+    height:400px;
+    }
+
+#btn{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    margin-top: 22px;
+    color: white;
+    background:#DDDDDD;
+    border-radius: 6px;
+    float: right;
+}
+
+</style>
+
 </head>
 <body>
 
+<div class="whole">
+    <table class="basic-info">
+        <thead>
+        <h1>Product Description</h1>
+        </thead>
+        <tr>
+            <td class="image">
+                <img id="img"/>
+            </td>
+            <td class="info">
+                <h3>Detail Information：</h3>
+                <table>
+                    Bookname:<p id="name">
+
+                </p>
+                    Author:<p id="author">
+
+                </p>
+                    Price:<p id="price">
+
+                </p>
+                    Category:<p id="category">
+
+                </p>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>Other Detail Information：</h3>
+                Publisher:<p id="publisher"></p>
+                ISBN<p id="ISBN"></p>
+                Language:<p id="language"></p>
+                <p><input type="hidden" id="id" /></p>
+                <button id="btn_1" type="submit" onclick="buy()" name="add-cart">buy</button>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+<div class="foot">
+</div>
 </body>
+
 </html>

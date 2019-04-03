@@ -35,12 +35,15 @@ public class LoginoutController {
                     System.out.println("login session1:" + session.getId());
                     System.out.println(request.getSession().getId());
                     session.setAttribute(session.getId(), buyerId);
+                    session.setAttribute("username", username);
+                    session.setAttribute("type", "buyer");
                     return "buyer";
                 } else if ("2".equals(accountType)) {
                     Long sellerId = accountService.getAccountId(username);
                     System.out.println("login session2:" + session.getId());
                     System.out.println(request.getSession().getId());
                     session.setAttribute(session.getId(), sellerId);
+                    session.setAttribute("type", "seller");
                     return "seller";
                 }
             } else {
@@ -58,19 +61,33 @@ public class LoginoutController {
         System.out.println("logout session:" + session.getId());
         System.out.println(request.getSession().getId());
         System.out.println(session.getAttribute(session.getId()));
+
         session.removeAttribute(session.getId());
+        session.removeAttribute("type");
+        session.removeAttribute("username");
         session.invalidate();
         return "logout";
     }
 
     @GetMapping("v1/account")
-    public List<Account> getAllAccount(){
+    public List<Account> getAllAccount() {
         System.out.println("登录登出服务——进入getAllAccount，参数打印");
         return accountService.getAllAccount();
     }
 
     @GetMapping("v0/validatelogin")
     public String validateLogin(HttpSession session) {
-        return (String) session.getAttribute(session.getId());
+        System.out.println("validate session id" + session.getId());
+        if (session.getAttribute(session.getId()) == null) {
+            return "no";
+        }
+        String id = session.getAttribute(session.getId()).toString();
+        return accountService.getUsername(Long.parseLong(id));
+    }
+
+    @GetMapping("v1/userid")
+    public String getUserId(HttpSession session) {
+        System.out.println("登录登出服务——进入getUserid，参数打印");
+        return String.valueOf(session.getAttribute(session.getId()));
     }
 }
