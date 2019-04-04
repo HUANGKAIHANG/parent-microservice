@@ -1,0 +1,126 @@
+*{padding: 0; margin: 0;}
+#app{
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+}
+table{
+    width: 80%;
+    border-spacing:0;
+    margin-left:150px;
+    margin-top:30px;
+    border:2px solid black;
+}
+thead, tfoot{
+    background-color: #FF9999;
+    line-height: 40px;
+}
+.border-bottom{
+    border-bottom: solid #cccccc 1px
+    font-size: 18px;
+    font-family: Comic Sans MS;
+   ;
+}
+img{width: 200px; display: inline-block; vertical-align: bottom
+}
+.info{display: inline-block;
+    font-size: 14px;
+}
+.info h6{
+    font-size: 16px;
+    margin: 0;
+    -webkit-margin-before:0;
+    -webkit-margin-after: 0;
+    padding: 0;
+}
+p{
+    margin: 10px 0;
+    font-size:16px;
+}
+td{
+    padding: 0 20px;
+    font-size:18px;
+}
+tbody td{padding: 20px 20px;}
+
+.checkout{
+    padding:20px;
+    font-family: Comic Sans MS;
+    font-size: 22px;
+    text-align: left;
+}
+.num{width: 50px;
+    border: #cccccc solid 1px;
+    
+}
+.num input{
+    width: 30px;
+    border: none;
+    text-align: center;
+}
+
+.pay{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 30px;
+    margin-right:100px;
+
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border: 0;
+
+    float: right;
+
+}
+#back{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 30px;
+    margin-left:100px;
+
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border: 0;
+
+    float: left;
+}
+.Delete{font-size: 18px;
+    font-family: Comic Sans MS;
+
+    width: 120px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 30px;
+
+    color: white;
+    background-color: black;
+    border-radius: 6px;
+    border: 0;
+
+    float: center;}
+
+#count{
+    font-size: 22px;
+    font-family: Comic Sans MS;
+    width:600px;
+    height: 12px;
+    line-height: 28px;
+    text-align:center;
+    margin-top: 60px;
+    margin-left:20px;
+    margin-bottom:50px;
+    color: black;
+    }

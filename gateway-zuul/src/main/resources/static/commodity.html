@@ -18,6 +18,13 @@
     border-radius: 10px;
     text-align: center;
     font-family:Trebuchet MS;
+    font-size:16px;
+    }
+
+    P{
+    text-align: center;
+    font-family:Trebuchet MS;
+    font-size:20px;
     }
 
     .basic-info{
@@ -47,12 +54,17 @@
     margin-left:10%;
     }
     <--rgba(240, 255, 255, 0.5) -->
-    .img{
+    .image{
     width:500px;
     height:400px;
     }
 
-#btn{
+    #img{
+    width:500px;
+    height:400px;
+    }
+
+#btn_1{
     font-size: 18px;
     font-family: Comic Sans MS;
     width: 120px;
@@ -63,6 +75,18 @@
     background:#DDDDDD;
     border-radius: 6px;
     float: right;
+}
+#btn_2{
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    margin-top: 22px;
+    color: white;
+    background:#DDDDDD;
+    border-radius: 6px;
+    float: left;
 }
 
 </style>
@@ -105,6 +129,7 @@
                 Language:<p id="language"></p>
                 <p><input type="hidden" id="id" /></p>
                 <button id="btn_1" type="submit" onclick="buy()" name="add-cart">buy</button>
+                <button id="btn_2" type="submit" onclick="window.location.href='./index.html'" name="add-cart">back</button>
             </td>
         </tr>
 
