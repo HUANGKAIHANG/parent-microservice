@@ -13,7 +13,7 @@ public class FileUpload {
 
     public static String writeUploadFile(MultipartFile file, String module) {
         String filename = file.getOriginalFilename();
-        String realpath = "D:/rentHouse/" + module + "/";
+        String realpath = "C:/rentHouse/" + module + "/";
         File fileDir = new File(realpath);
         if (!fileDir.exists())
             fileDir.mkdirs();

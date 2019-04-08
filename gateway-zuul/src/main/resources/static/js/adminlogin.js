@@ -2,7 +2,7 @@
 @author YI Ming
 */
 
-$(document).ready(function () {
+/*$(document).ready(function () {
     $.ajax({
         type:"get",
         url:"./adminloginoutservice/v0/validatelogin",
@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         }
     });
-})
+})*/
 
 function adminLogin() {
     $.ajax({
